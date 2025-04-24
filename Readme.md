@@ -9,7 +9,7 @@ Ce projet est développé en **Symfony 7.2.25**, avec **API Platform**, **DTOs +
 ## ✨ Stack Technique
 - Symfony 7.2.25
 - API Platform
-- PostgreSQL
+- (i.e) PostgreSQL 
 - FrankenPHP (sans Apache/Nginx)
 - Zenstruck Foundry pour les fixtures
 - Doctrine ORM avec UUID
@@ -21,7 +21,7 @@ Ce projet est développé en **Symfony 7.2.25**, avec **API Platform**, **DTOs +
 
 ### ✅ 1. Cloner le projet
 ```bash
-git clone https://github.com/<your-org>/sudmaps-backend.git
+git clone https://github.com/pabiosoft/sudmaps.git
 cd sudmaps-backend
 ```
 
@@ -31,9 +31,12 @@ composer install
 ```
 
 ### ✅ 3. Créer le fichier `.env.local`
-Configure la BDD PostgreSQL (Neon) :
+Configure la BDD  :
 ```
 DATABASE_URL="postgresql://<user>:<password>@<host>/<database>?serverVersion=15&charset=utf8"
+||
+DATABASE_URL="mysql://USERNAME:PASSWORD@HOST:PORT/DB_NAME?serverVersion=mariadb-10.11.2&charset=utf8mb4"
+
 ```
 
 ---
@@ -69,7 +72,9 @@ docker run -v $PWD:/app/public \
 Pour initialiser la base de données :
 ```bash
 php bin/console doctrine:migrations:migrate
-php bin/console doctrine:fixtures:load --purge-with-truncate
+php bin/console doctrine:fixtures:load --purge-with-truncate (if used postgres)
+php  bin/console doctrine:fixtures:load --purger=delete (mysql - mariadb)
+
 ```
 
 ---
