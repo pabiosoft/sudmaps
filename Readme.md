@@ -91,7 +91,7 @@ https://localhost/api
 
 ---
 
-## 🪑 Pour le développeur mobile (React Native)
+## 🪑 Pour le développeur front (i.e React)
 
 - Toutes les routes sont REST + JSON-LD (Hydra)
 - Authentification (JWT) à venir peut-etre
@@ -125,5 +125,6 @@ Ping nous en ouvrant une Issue GitHub ✨
 
 ---
 
-Made with ❤️ by @pabiosoft & @civilisation-it
+Made with ❤️ by [@pabiosoft](https://pabiosoft.com) & [@civilisation-it](https://civilisation-it.fr)
+
 
