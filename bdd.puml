@@ -1,0 +1,53 @@
+@startuml
+title Diagramme des entités principales - SudMaps
+
+abstract class BaseEntity {
+  - id: string
+  - isActif: bool
+  + getId(): string
+  + getIsActif(): bool
+}
+
+class Location {
+  - name: string
+  - description: string
+  - latitude: float
+  - longitude: float
+  - visibility: string
+}
+
+class Landmark {
+  - label: string
+  - location: Location
+}
+
+class SavedLocation {
+  - savedAt: DateTimeImmutable
+  - owner: Owner
+  - location: Location
+}
+
+class Tag {
+  - name: string
+  - location: Location
+}
+
+class Owner {
+  - username: string
+  - email: string
+}
+
+' Héritages
+Location --|> BaseEntity
+Landmark --|> BaseEntity
+SavedLocation --|> BaseEntity
+Tag --|> BaseEntity
+Owner --|> BaseEntity
+
+' Relations
+Landmark --> Location
+SavedLocation --> Location
+SavedLocation --> Owner
+Tag --> Location
+
+@enduml

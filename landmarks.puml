@@ -1,0 +1,16 @@
+@startuml
+title Récupérer les landmarks d'une location
+
+actor "Utilisateur (App Mobile)" as User
+participant "Frontend React Native" as Front
+participant "API Symfony" as API
+participant "DB (MariaDB/Postgres)" as DB
+
+User -> Front: Ouvre la fiche d'une location
+Front -> API: GET /api/landmarks?location=/api/locations/abc-123
+API -> DB: SELECT * FROM landmark\nWHERE location_id = 'abc-123'
+DB --> API: Liste des landmarks
+API --> Front: 200 OK + LandmarkDto[]
+Front -> User: Affiche les points d'intérêt sur la carte 🗺️
+
+@enduml

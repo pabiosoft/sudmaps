@@ -1,0 +1,17 @@
+@startuml
+title Création d'une location + tags associés
+
+actor "Utilisateur (App Mobile)" as User
+participant "Frontend React Native" as Front
+participant "API Symfony" as API
+participant "DB (MariaDB/Postgres)" as DB
+
+User -> Front: Remplit formulaire de location
+Front -> API: POST /api/locations\n{ name, description, tags: [...] }
+API -> DB: INSERT INTO location\n(name, description, etc.)
+API -> DB: Pour chaque tag: INSERT INTO tag (name, location_id)
+DB --> API: UUID de la nouvelle location
+API --> Front: 201 Created + LocationDto
+Front -> User: Affiche la fiche de la nouvelle location 🎉
+
+@enduml

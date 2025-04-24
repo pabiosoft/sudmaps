@@ -101,6 +101,7 @@ https://localhost/api
 GET /api/locations
 ```
 
+
 ---
 
 ## 📁 Structure Dossier Clé
@@ -126,5 +127,3 @@ Ping nous en ouvrant une Issue GitHub ✨
 ---
 
 Made with ❤️ by [@pabiosoft](https://pabiosoft.com) & [@civilisation-it](https://civilisation-it.fr)
-
-

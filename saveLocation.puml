@@ -1,0 +1,17 @@
+@startuml
+title Sauvegarde d'une location favorite (flow API Front <-> Back)
+
+actor "Utilisateur (App Mobile)" as User
+participant "Frontend React Native" as Front
+participant "API Symfony" as API
+participant "DB (MariaDB/Postgres)" as DB
+
+User -> Front: Clique sur "Ajouter aux favoris"
+Front -> API: POST /api/locations\n{ locationId: "abc-123" }
+API -> DB: Vérifie l'existence de Location
+API -> DB: Insère dans SavedLocation\n(owner_id, location_id, saved_at)
+DB --> API: OK (UUID)
+API --> Front: 201 Created + SavedLocationDto
+Front -> User: Affiche "Ajouté avec succès ❤️"
+
+@enduml

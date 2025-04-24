@@ -1,0 +1,16 @@
+@startuml
+title Lister les tags d'une location
+
+actor "Utilisateur (App Mobile)" as User
+participant "Frontend React Native" as Front
+participant "API Symfony" as API
+participant "DB (MariaDB/Postgres)" as DB
+
+User -> Front: Ouvre une location
+Front -> API: GET /api/tags?location=/api/locations/abc-123
+API -> DB: SELECT * FROM tag\nWHERE location_id = 'abc-123'
+DB --> API: Liste des tags
+API --> Front: 200 OK + TagDto[]
+Front -> User: Affiche les tags 🔖
+
+@enduml

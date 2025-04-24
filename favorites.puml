@@ -1,0 +1,17 @@
+@startuml
+title Afficher les locations favorites de l'utilisateur
+
+actor "Utilisateur (App Mobile)" as User
+participant "Frontend React Native" as Front
+participant "API Symfony" as API
+participant "DB (MariaDB/Postgres)" as DB
+
+User -> Front: Accède à "Mes favoris"
+Front -> API: GET /api/saved_locations?owner=/api/owners/me
+API -> DB: SELECT * FROM saved_location\nWHERE owner_id = 'user-456'
+API -> DB: JOIN avec Location pour chaque favori
+DB --> API: Liste des Location[]
+API --> Front: 200 OK + SavedLocationDto[]
+Front -> User: Affiche la liste des lieux favoris ⭐️
+
+@enduml
