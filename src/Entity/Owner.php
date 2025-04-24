@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\OwnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-class User extends BaseEntity
+#[ORM\Entity(repositoryClass: OwnerRepository::class)]
+class Owner extends BaseEntity
 {
 
     #[ORM\Column(length: 100)]

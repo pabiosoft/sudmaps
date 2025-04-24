@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Mapper\User;
+namespace App\Mapper\Owner;
 
-use App\ApiResource\UserDto;
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\ApiResource\OwnerDto;
+use App\Entity\Owner;
+use App\Repository\OwnerRepository;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
 
-#[AsMapper(from: UserDto::class, to: User::class)]
-class UserDtoToEntityMapper implements MapperInterface
+#[AsMapper(from: OwnerDto::class, to: Owner::class)]
+class OwnerDtoToEntityMapper implements MapperInterface
 {
     public function __construct(
-        private UserRepository $userRepository
+        private OwnerRepository $userRepository
     ) {}
 
     public function load(object $from, string $toClass, array $context): object
     {
         $dto = $from;
-        assert($dto instanceof UserDto);
+        assert($dto instanceof OwnerDto);
 
-        return $dto->id ? $this->userRepository->find($dto->id) : new User();
+        return $dto->id ? $this->userRepository->find($dto->id) : new Owner();
     }
 
     public function populate(object $from, object $to, array $context): object
@@ -28,8 +28,8 @@ class UserDtoToEntityMapper implements MapperInterface
         $dto = $from;
         $entity = $to;
 
-        assert($dto instanceof UserDto);
-        assert($entity instanceof User);
+        assert($dto instanceof OwnerDto);
+        assert($entity instanceof Owner);
 
         $entity->setUsername($dto->username);
         $entity->setEmail($dto->email);

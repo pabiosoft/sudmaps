@@ -9,7 +9,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Doctrine\Orm\State\Options;
-use App\Entity\User;
+use App\Entity\Owner;
 use App\State\EntityClassDtoStateProcessor;
 use App\State\EntityToDtoStateProvider;
 
@@ -22,12 +22,12 @@ use App\State\EntityToDtoStateProvider;
         new Patch(),
         new Delete(openapi: false, security: 'is_granted("ROLE_ADMIN")'),
     ],
+    paginationItemsPerPage: 10,
     provider: EntityToDtoStateProvider::class,
     processor: EntityClassDtoStateProcessor::class,
-    stateOptions: new Options(entityClass: User::class),
-    paginationItemsPerPage: 10,
+    stateOptions: new Options(entityClass: Owner::class),
 )]
-class UserDto extends BaseDto
+class OwnerDto extends BaseDto
 {
     public ?string $username = null;
     public ?string $email = null;

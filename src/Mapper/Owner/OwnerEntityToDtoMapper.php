@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Mapper\User;
+namespace App\Mapper\Owner;
 
-use App\ApiResource\UserDto;
-use App\Entity\User;
+use App\ApiResource\OwnerDto;
+use App\Entity\Owner;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
 
-#[AsMapper(from: User::class, to: UserDto::class)]
-class UserEntityToDtoMapper implements MapperInterface
+#[AsMapper(from: Owner::class, to: OwnerDto::class)]
+class OwnerEntityToDtoMapper implements MapperInterface
 {
     public function load(object $from, string $toClass, array $context): object
     {
         $entity = $from;
-        assert($entity instanceof User);
+        assert($entity instanceof Owner);
 
-        $dto = new UserDto();
+        $dto = new OwnerDto();
         $dto->id = $entity->getId();
 
         return $dto;
@@ -26,8 +26,8 @@ class UserEntityToDtoMapper implements MapperInterface
         $entity = $from;
         $dto = $to;
 
-        assert($entity instanceof User);
-        assert($dto instanceof UserDto);
+        assert($entity instanceof Owner);
+        assert($dto instanceof OwnerDto);
 
         $dto->username = $entity->getUsername();
         $dto->email = $entity->getEmail();

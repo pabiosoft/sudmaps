@@ -6,7 +6,7 @@ use App\ApiResource\SavedLocationDto;
 use App\Entity\SavedLocation;
 use App\Repository\LocationRepository;
 use App\Repository\SavedLocationRepository;
-use App\Repository\UserRepository;
+use App\Repository\OwnerRepository;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
 
@@ -16,7 +16,7 @@ class SavedLocationDtoToEntityMapper implements MapperInterface
     public function __construct(
         private SavedLocationRepository $savedLocationRepository,
         private LocationRepository $locationRepository,
-        private UserRepository $userRepository
+        private OwnerRepository $userRepository
     ) {}
 
     public function load(object $from, string $toClass, array $context): object

@@ -10,7 +10,7 @@ class SavedLocation extends BaseEntity
 {
 
     #[ORM\ManyToOne(inversedBy: 'savedLocations')]
-    private ?User $owner = null;
+    private ?Owner $owner = null;
 
     #[ORM\ManyToOne(inversedBy: 'savedLocations')]
     private ?Location $location = null;
@@ -19,12 +19,12 @@ class SavedLocation extends BaseEntity
     private ?\DateTimeImmutable $savedAt = null;
 
 
-    public function getOwner(): ?User
+    public function getOwner(): ?Owner
     {
         return $this->owner;
     }
 
-    public function setOwner(?User $owner): static
+    public function setOwner(?Owner $owner): static
     {
         $this->owner = $owner;
 
