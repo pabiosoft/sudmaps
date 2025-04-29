@@ -1,7 +1,36 @@
 api_platform:
-    title: Hello API Platform
+    title: sudMaps
+    description: backend sud-maps
     version: 1.0.0
+    formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+        multipart: ['multipart/form-data']
+
+    enable_re_doc: true
+    enable_swagger_ui: true # Enable Swagger UI met a false pour retirer le tester
+    enable_entrypoint: false
+
+    swagger:
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
+
+    docs_formats:
+        jsonld: ['application/ld+json']
+        jsonopenapi: ['application/vnd.openapi+json']
+        multipart: ['multipart/form-data']
+
     defaults:
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
+        extra_properties:
+            standard_put: true
+            rfc_7807_compliant_errors: true
+        attributes:
+            normalization_context:
+                skip_null_values: false
+            denormalization_context:
+                skip_null_values: false
