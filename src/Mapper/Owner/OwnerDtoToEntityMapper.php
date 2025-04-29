@@ -5,6 +5,7 @@ namespace App\Mapper\Owner;
 use App\ApiResource\OwnerDto;
 use App\Entity\Owner;
 use App\Repository\OwnerRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
 
@@ -12,7 +13,8 @@ use Symfonycasts\MicroMapper\MapperInterface;
 class OwnerDtoToEntityMapper implements MapperInterface
 {
     public function __construct(
-        private OwnerRepository $userRepository
+        private OwnerRepository $userRepository,
+        private UserPasswordHasherInterface $passwordHasher,
     ) {}
 
     public function load(object $from, string $toClass, array $context): object
@@ -33,6 +35,11 @@ class OwnerDtoToEntityMapper implements MapperInterface
 
         $entity->setUsername($dto->username);
         $entity->setEmail($dto->email);
+
+        if ($dto->password !== null) {
+            $hashed = $this->passwordHasher->hashPassword($entity, $dto->password);
+            $entity->setPassword($hashed);
+        }
 
         return $entity;
     }

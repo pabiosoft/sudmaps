@@ -47,6 +47,9 @@ class Location extends BaseEntity
     #[ORM\OneToMany(targetEntity: Tag::class, mappedBy: 'location')]
     private Collection $tags;
 
+    #[ORM\ManyToOne(inversedBy: 'locations')]
+    private ?Owner $owner = null;
+
     public function __construct()
     {
         $this->landmarks = new ArrayCollection();
@@ -213,6 +216,18 @@ class Location extends BaseEntity
                 $tag->setLocation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): static
+    {
+        $this->owner = $owner;
 
         return $this;
     }

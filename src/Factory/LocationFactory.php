@@ -39,6 +39,7 @@ final class LocationFactory extends PersistentProxyObjectFactory
             'longitude' => self::faker()->randomFloat(),
             'visibility' => self::faker()->randomElement(['public', 'private']),
             'isActif' => true,
+            'owner' => OwnerFactory::new(), // 👈 lien automatique avec un Owner généré
         ];
     }
 

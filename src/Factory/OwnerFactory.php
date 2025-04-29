@@ -35,6 +35,8 @@ final class OwnerFactory extends PersistentProxyObjectFactory
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'username' => self::faker()->userName(),
             'email' => self::faker()->unique()->safeEmail(),
+            'password' => 'pass', // sera remplacé au besoin
+
             'isActif' => true,
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\ApiResource;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -18,7 +19,9 @@ use App\State\EntityToDtoStateProvider;
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
+        new Post(
+            description: 'Créer un nouvel utilisateur (inscription)',
+        ),
         new Patch(),
         new Delete(openapi: false, security: 'is_granted("ROLE_ADMIN")'),
     ],
@@ -31,4 +34,7 @@ class OwnerDto extends BaseDto
 {
     public ?string $username = null;
     public ?string $email = null;
+
+    #[ApiProperty(readable: false)]
+    public ?string $password = null;
 }
