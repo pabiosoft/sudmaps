@@ -20,10 +20,10 @@ use App\State\EntityToDtoStateProvider;
         new Post(),
         new Delete(openapi: false, security: 'is_granted("ROLE_ADMIN")'),
     ],
+    paginationItemsPerPage: 10,
     provider: EntityToDtoStateProvider::class,
     processor: EntityClassDtoStateProcessor::class,
     stateOptions: new Options(entityClass: SavedLocation::class),
-    paginationItemsPerPage: 10,
 )]
 class SavedLocationDto extends BaseDto
 {
